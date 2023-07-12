@@ -12,15 +12,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 
+// This is the ProfileScreen composable function
 @Composable
 fun ProfileScreen() {
+    // Create a Box composable function with a Modifier and contentAlignment as the parameters
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Red),
-        contentAlignment = Alignment.Center
+            .background(Color.Red), // The background property is used to set the background color of the Box
 
+        contentAlignment = Alignment.Center // The contentAlignment property is used to align the child Text composable function in the center of the Box
     ) {
+        // Create a Text composable function with text, fontSize, color, and fontWeight as the parameters
         Text(
             text = "Profile",
             fontSize = 36.sp,
@@ -30,6 +33,7 @@ fun ProfileScreen() {
     }
 }
 
+// This is the ProfilePreview composable function
 @Preview
 @Composable
 fun ProfilePreview() {

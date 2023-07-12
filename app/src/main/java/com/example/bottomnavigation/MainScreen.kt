@@ -1,4 +1,4 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
+@file:OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3Api::class)
 
 package com.example.bottomnavigation
 
@@ -20,27 +20,38 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+// This is the main screen composable function
 @Composable
 fun MainScreen() {
+    // Create a navController using the rememberNavController function
     val navController = rememberNavController()
+
+    // Create a Scaffold composable function with a BottomBar as the bottom bar
     Scaffold(
         bottomBar = { BottomBar(navController = navController) }
     ) {
+        // Create a BottomNavGraph composable function with the navController as the parameter
         BottomNavGraph(navController = navController)
     }
 }
 
+// This is the BottomBar composable function
 @Composable
 fun BottomBar(navController: NavHostController) {
+    // Define a list of screens for the bottom navigation bar
     val screens = listOf(
         BottomBarScreen.Home,
         BottomBarScreen.Profile,
         BottomBarScreen.Setting,
     )
+
+    // Get the current destination from the navBackStackEntry using currentBackStackEntryAsState function
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
 
+    // Create a BottomAppBar composable function with a RowScope as the parameter
     BottomAppBar {
+        // Loop through each screen in the screens list and create an item for each screen using the AddItem composable function
         screens.forEach { screen ->
             AddItem(
                 screen = screen,
@@ -49,16 +60,16 @@ fun BottomBar(navController: NavHostController) {
             )
         }
     }
-
 }
 
+// This is the AddItem composable function
 @Composable
 fun RowScope.AddItem(
     screen: BottomBarScreen,
     currentDestination: NavDestination?,
     navController: NavHostController
 ) {
-
+    // Create a NavigationBarItem composable function with label, icon, selected, and onClick parameters
     NavigationBarItem(
         label = {
             Text(text = screen.title)
